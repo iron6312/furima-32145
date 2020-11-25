@@ -16,24 +16,24 @@
 ### Association
 
 - has_many :items
-- has_many :historys
+- has_many :histories
 
 ## items テーブル
 
-| Column             | Type       | Options                        |
-| ------------------ | ------     | ------------------------------ |
-| name               | string     | null: false                    |
-| description        | string     | null: false                    |
-| price              | integer    | null: false                    |
-| status_id          | integer     | null: false                    |
-| delivery_fee_id    | integer     | null: false                    |
-| method_of_shipment | string     | null: false                    |
-| ship_form_id       | integer     | null: false                    |
-| day_to_ship_id     | integer     | null: false                    |
-| user_id            | integer    | null: false, foreign_key: true |
+| Column                | Type       | Options                       |
+| --------------------- | ------     | ----------------------------- |
+| name                  | string     | null: false                   |
+| description           | string     | null: false                   |
+| price                 | integer    | null: false                   |
+| status_id             | integer    | null: false                   |
+| delivery_fee_id       | integer    | null: false                   |
+| method_of_shipment_id | integer    | null: false                   |
+| ship_form_id          | integer    | null: false                   |
+| day_to_ship_id        | integer    | null: false                   |
+| user_id               | integer    | null: false, foreign_key: true|
 
 ## Association
-
+- belongs_to :historie
 - has_many :images
 - belongs_to :user
 
@@ -50,10 +50,10 @@
 | phone_number    | string  | null: false                    |
 
 ### Association
-
+- belongs_to :histories
 - belongs_to :users
 
-## historys テーブル
+## histories テーブル
 
 | Column          | Type    | Options                        |
 | --------------- | ------- | ------------------------------ |  
@@ -63,3 +63,5 @@
 ### Association
 
 - belongs_to :buyer
+- belongs_to :item
+- belongs_to :user
