@@ -4,7 +4,7 @@
 
 | Column               | Type   | Options     |
 | -------------------- | ------ | ----------- |
-| nickname             | ------ | ----------- |
+| nickname             | string | null: false |
 | email                | string | null: false |
 | encrypted_password   | string | null: false |
 | first_name           | string | null: false |
@@ -23,7 +23,8 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ------     | ------------------------------ |
-| name               | string     | null: false                    |
+| name_id            | string     | null: false                    |
+| description        | string     | null: false                    |
 | price              | integer    | null: false                    |
 | status_id          | string     | null: false                    |
 | delivery_fee_id    | string     | null: false                    |
@@ -35,7 +36,7 @@
 ## Association
 
 - has_many :images
-- belongs_to :users
+- belongs_to :user
 
 ## buyers テーブル
 
@@ -43,12 +44,23 @@
 | --------------- | ------- | ------------------------------ |  
 | user_id         | integer | null: false, foreign_key: true |
 | post_code       | string  | null: false                    |
-| prefecture_id   | string  | null: false                    |
+| ship_form_id    | string  | null: false                    |
 | city            | string  | null: false                    |
 | address         | string  | null: false                    |
 | building_name   | string  |                                |
-| phone_number    | string  |                                |
+| phone_number    | string  | null: false                    |
 
 ### Association
 
 - belongs_to :users
+
+## historys テーブル
+
+| Column          | Type    | Options                        |
+| --------------- | ------- | ------------------------------ |  
+| user_id         | integer | null: false, foreign_key: true |
+| name_id         | string  | null: false                    |
+
+### Association
+
+- belongs_to :buyer
