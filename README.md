@@ -16,21 +16,20 @@
 ### Association
 
 - has_many :items
-- has_one :cards
-- has_one :buyers
+- has_many :historys
 
 ## items テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ------     | ------------------------------ |
-| name_id            | string     | null: false                    |
+| name               | string     | null: false                    |
 | description        | string     | null: false                    |
 | price              | integer    | null: false                    |
-| status_id          | string     | null: false                    |
-| delivery_fee_id    | string     | null: false                    |
+| status_id          | integer     | null: false                    |
+| delivery_fee_id    | integer     | null: false                    |
 | method_of_shipment | string     | null: false                    |
-| ship_form_id       | string     | null: false                    |
-| day_to_ship_id     | string     | null: false                    |
+| ship_form_id       | integer     | null: false                    |
+| day_to_ship_id     | integer     | null: false                    |
 | user_id            | integer    | null: false, foreign_key: true |
 
 ## Association
@@ -59,7 +58,7 @@
 | Column          | Type    | Options                        |
 | --------------- | ------- | ------------------------------ |  
 | user_id         | integer | null: false, foreign_key: true |
-| name_id         | string  | null: false                    |
+| item_id         | integer | null: false, foreign_key: true |
 
 ### Association
 
