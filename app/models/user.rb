@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   validates :email, uniqueness: { case_sensitive: false }
-  VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i.freeze
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i
   validates :password, format: { with: VALID_PASSWORD_REGEX }
   validates :password, :password_confirmation, confirmation: true
 
@@ -27,4 +27,5 @@ class User < ApplicationRecord
     validates :first_name
     validates :last_name
   end
+
 end
