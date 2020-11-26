@@ -5,8 +5,9 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.text    :description,           null: false
       t.integer :price,                 null: false
       t.integer :status_id,             null: false
-      t.integer :delivery_fee_id,       null: false
-      t.integer :method_of_shipment_id, null: false
+      t.integer :fee_id,                null: false
+      t.integer :shipment_id,           null: false
+      t.integer :category_id,           null: false
       t.integer :ship_form_id,          null: false
       t.integer :day_to_ship_id,        null: false
       t.integer :user_id,               null: false, foreign_key: true
@@ -14,3 +15,4 @@ class CreateItems < ActiveRecord::Migration[6.0]
     end
   end
 end
+
