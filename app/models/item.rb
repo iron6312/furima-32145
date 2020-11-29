@@ -23,10 +23,10 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  VALID_PRICE_REGEX = /\A[0-9]+\z/
+  VALID_PRICE_REGEX = /\A[0-9]+\z/.freeze
   validates :price, format: { with: VALID_PRICE_REGEX }
 
-  with_options numericality: { greater_than: 299,  less_than: 10000000 } do
+  with_options numericality: { greater_than: 299, less_than: 10_000_000 } do
     validates :price
   end
 end
