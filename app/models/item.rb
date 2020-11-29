@@ -5,7 +5,10 @@ class Item < ApplicationRecord
   belongs_to :day_to_ship
   belongs_to :status
   belongs_to :category
-
+  
+  belongs_to :user
+  has_one_attached :image
+  
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :fee_id
@@ -20,8 +23,6 @@ class Item < ApplicationRecord
     validates :description
     validates :price
   end
-  belongs_to :user
-  has_one_attached :image
 
   VALID_PRICE_REGEX = /\A[0-9]+\z/.freeze
   validates :price, format: { with: VALID_PRICE_REGEX }
