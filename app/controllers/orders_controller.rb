@@ -1,15 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
-  
+
   def index
     @user_order = UserOrder.new
   end
 
   def create
-
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
+      pay_item
       @user_order.save
       redirect_to root_path
     else
@@ -20,10 +20,19 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:user_order).permit(:post_code, :ship_form_id, :city, :address, :building_name, :phone_number, :token).merge(user_id: current_user.id, item_id: params[:item_id])#, history_id: history.id)
+    params.require(:user_order).permit(:post_code, :ship_form_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def pay_item
+    Payjp.api_key = 'sk_test_50ea751ecc59ca38de135935'
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: order_params[:token],
+      currency: 'jpy'
+    )
   end
 end

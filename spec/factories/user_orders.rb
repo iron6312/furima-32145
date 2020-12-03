@@ -5,5 +5,6 @@ FactoryBot.define do
     city           { '香港' }
     address        { '北京' }
     phone_number   { '09876543210' }
+    token          { 'eyt_gfhgjrf87804768037067750877689' }
   end
 end
