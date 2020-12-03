@@ -16,8 +16,7 @@
 ### Association
 
 - has_many :items
-- has_one :cards
-- has_one :buyers
+- has_many :histories
 
 ## items テーブル
 
@@ -34,18 +33,14 @@
 
 ## Association
 
-- has_many :images
-- belongs_to :users
+- belongs_to :history
+- belongs_to :user
 
-## buyers テーブル
+## orders テーブル
 
 | Column          | Type    | Options                        |
-| --------------- | ------- | ------------------------------ |  
-| user_id         | integer | null: false, foreign_key: true |
-| last_name       | string  | null: false                    |
-| first_name      | string  | null: false                    |
-| first_name_kana | string  | null: false                    |
-| last_name_kana  | string  | null: false                    |
+| --------------- | ------- | ------------------------------ |
+| history_id      | integer | null: false, foreign_key: true |
 | post_code       | string  | null: false                    |
 | prefecture      | string  | null: false                    |
 | city            | string  | null: false                    |
@@ -55,22 +50,15 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :history
 
-## cards テーブル
+## histories テーブル
 
-| Column      | Type   | Options                        |
-| ----------- | -------| ------------------------------ |  
-| card_number | string | null: false                    |
-| exp_month   | string | null: false                    |
-| exp_year    | string | null: false                    |
+| Column          | Type    | Options                        |
+| --------------- | ------- | ------------------------------ |  
+| user_id         | integer | null: false, foreign_key: true |
+| item_id         | integer | null: false, foreign_key: true |
 
-- belongs_to :users
-
-## images テーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |  
-| image  | string     | null: false                    |
-
-- belongs_to :users
+- has_one :order
+- belongs_to :item
+- belongs_to :user
