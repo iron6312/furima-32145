@@ -109,5 +109,7 @@ describe User do
       @user.valid?
       expect(@user.errors[:birthday]).to include("can't be blank")
     end
+
+    expect(@item).to be_valid
   end
 end

@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :category
 
+  has_one :history
   belongs_to :user
   has_one_attached :image
 
