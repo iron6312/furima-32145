@@ -40,8 +40,8 @@ RSpec.describe UserOrder, type: :model do
       @user_order.valid?
       expect(@user_order.errors.full_messages).to include("Phone number is invalid")
     end
-    it '郵便番号はハイフン無しで入力しないと購入できない' do
-      @user_order.post_code = '0987-654'
+    it '郵便番号はハイフンを含んで入力しないと購入できない' do
+      @user_order.post_code = '0987654'
       @user_order.valid?
       expect(@user_order.errors.full_messages).to include("Post code is invalid")
     end
@@ -63,6 +63,10 @@ RSpec.describe UserOrder, type: :model do
   end
     context '購入に成功するとき' do
       it '全ての情報があるとき' do
+        expect(@user_order).to be_valid
+      end
+      it '建物名が空でも購入できる' do
+        @user_order.building_name = nil
         expect(@user_order).to be_valid
       end
     end

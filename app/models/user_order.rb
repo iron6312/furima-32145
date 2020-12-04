@@ -15,13 +15,12 @@ class UserOrder
     validates :item_id
     
   end
-
+  # 必要に応じて使用する
   # with_options format: { with: /\A[ぁ-んァ-ン一-龥]/.freeze } do
   #   validates :city
   #   validates :address
-  #   validates :building_name
   # end
-  validates :post_code, format: { with: /\A\d{7}\z/ }
+  validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
 
   validates :phone_number, format: { with: /\A\d{11}\z/ }
 
