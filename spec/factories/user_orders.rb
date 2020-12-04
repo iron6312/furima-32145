@@ -6,5 +6,7 @@ FactoryBot.define do
     address        { '北京' }
     phone_number   { '09876543210' }
     token          { 'eyt_gfhgjrf87804768037067750877689' }
+    user_id        { 2 }
+    item_id        { 2 }
   end
 end

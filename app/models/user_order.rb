@@ -11,6 +11,9 @@ class UserOrder
     validates :address
     validates :phone_number
     validates :token
+    validates :user_id
+    validates :item_id
+    
   end
 
   # with_options format: { with: /\A[ぁ-んァ-ン一-龥]/.freeze } do
@@ -18,9 +21,9 @@ class UserOrder
   #   validates :address
   #   validates :building_name
   # end
-  validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :post_code, format: { with: /\A\d{7}\z/ }
 
-  validates :phone_number, format: { with: /\A\d{11}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :phone_number, format: { with: /\A\d{11}\z/ }
 
   def save
     history = History.create(user_id: user_id, item_id: item_id)
