@@ -4,6 +4,9 @@ class OrdersController < ApplicationController
 
   def index
     @user_order = UserOrder.new
+    redirect_to root_path if current_user.id == @item.user.id
+
+    redirect_to root_path if current_user != @item.history
   end
 
   def create
