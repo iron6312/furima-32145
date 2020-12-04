@@ -22,7 +22,7 @@ class UserOrder
   # end
   validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
 
-  validates :phone_number, format: { with: /\A\d{11}\z/ }
+  validates :phone_number, format: { with: /\A\d{10,11}\z/ }
 
   def save
     history = History.create(user_id: user_id, item_id: item_id)
