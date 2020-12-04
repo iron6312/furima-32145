@@ -4,16 +4,21 @@ RSpec.describe UserOrder, type: :model do
     before do
       @user_order = FactoryBot.build(:user_order)
     end
-  context '商品の購入' do
+  context '商品の購入に失敗するとき' do
     it '郵便番号を入力しないと購入できない' do
       @user_order.post_code = nil
       @user_order.valid?
       expect(@user_order.errors.full_messages).to include("Post code can't be blank", "Post code is invalid")
     end
-    it '都道府県を入力しないと購入できない' do
+    it '都道府県を選択しないと購入できない' do
       @user_order.ship_form_id = 1
       @user_order.valid?
       expect(@user_order.errors[:ship_form_id]).to include("must be other than 1")
+    end
+    it '都道府県を入力しないと購入できない' do
+      @user_order.ship_form_id = nil
+      @user_order.valid?
+      expect(@user_order.errors[:ship_form_id]).to include("is not a number", "can't be blank")
     end
     it '番地を入力しないと購入できない' do
       @user_order.address = nil
@@ -61,7 +66,7 @@ RSpec.describe UserOrder, type: :model do
       expect(@user_order.errors[:item_id]).to include("can't be blank")
     end
   end
-    context '購入に成功するとき' do
+    context '商品の購入に成功するとき' do
       it '全ての情報があるとき' do
         expect(@user_order).to be_valid
       end

@@ -7,6 +7,7 @@ class UserOrder
   end
   with_options presence: true do
     validates :post_code
+    validates :ship_form_id
     validates :city
     validates :address
     validates :phone_number
